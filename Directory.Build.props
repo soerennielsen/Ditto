@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <VcpkgEnableManifest Condition="'$(MSBuildProjectName)'=='CP_Main'">true</VcpkgEnableManifest>
+    <VcpkgTriplet Condition="'$(MSBuildProjectName)'=='CP_Main' and '$(Platform)'=='x64'">x64-windows-static-md</VcpkgTriplet>
+    <VcpkgTriplet Condition="'$(MSBuildProjectName)'=='CP_Main' and '$(Platform)'=='Win32'">x86-windows-static-md</VcpkgTriplet>
+    <VcpkgTriplet Condition="'$(MSBuildProjectName)'=='CP_Main' and '$(Platform)'=='ARM64'">arm64-windows-static-md</VcpkgTriplet>
+  </PropertyGroup>
+  <Import Project="$(VCPKG_ROOT)\scripts\buildsystems\msbuild\vcpkg.props"
+          Condition="'$(VCPKG_ROOT)' != '' and Exists('$(VCPKG_ROOT)\scripts\buildsystems\msbuild\vcpkg.props')" />
+  <Import Project="$(VCPKG_ROOT)\scripts\buildsystems\msbuild\vcpkg.targets"
+          Condition="'$(VCPKG_ROOT)' != '' and Exists('$(VCPKG_ROOT)\scripts\buildsystems\msbuild\vcpkg.targets')" />
+</Project>

@@ -1,6 +1,7 @@
 #define MyAppName "Ditto"
-#define MyAppVersion GetFileVersion("..\ARM64\Release\Ditto.exe")
+#define MyAppVersion GetFileVersion("..\ReleaseARM64\Ditto.exe")
 #define MyAppVerName MyAppName + " " + MyAppVersion
+#define MyOutputBaseFilename "DittoSetup_arm64_" + GetEnv('VERSION_FILENAME')
 
 #define bit64
   
@@ -9,7 +10,7 @@
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppVerName}
-OutputBaseFilename=DittoSetup_{#MyAppVersion}
+OutputBaseFilename={#MyOutputBaseFilename}
 AppPublisher=Scott Brogden
 AppPublisherURL=ditto-cp.sourceforge.net
 AppSupportURL=ditto-cp.sourceforge.net
@@ -71,16 +72,13 @@ Name: AddFireWallException; Description: Add Windows Firewall exception for Ditt
 
 [Files]
 #ifdef bit64
-  Source: ..\ARM64\Release\Ditto.exe; DestDir: {app}; DestName: Ditto.exe; Check: InstallARM64; Flags: ignoreversion; AfterInstall: AddProgramToFirewall(ExpandConstant('{app}\Ditto.exe'), 'Ditto_FromInstaller_64');
-  Source: ..\ARM64\Release\ICU_Loader.dll; DestDir: {app}; Check: InstallARM64; Flags: ignoreversion
-  Source: ..\ARM64\Release\Addins\DittoUtil.dll; DestDir: {app}\Addins; Check: InstallARM64; Flags: ignoreversion
+  Source: ..\ReleaseARM64\Ditto.exe; DestDir: {app}; DestName: Ditto.exe; Check: InstallARM64; Flags: ignoreversion; AfterInstall: AddProgramToFirewall(ExpandConstant('{app}\Ditto.exe'), 'Ditto_FromInstaller_64');
+  Source: ..\ReleaseARM64\ICU_Loader.dll; DestDir: {app}; Check: InstallARM64; Flags: ignoreversion
+  Source: ..\ReleaseARM64\Addins\DittoUtil.dll; DestDir: {app}\Addins; Check: InstallARM64; Flags: ignoreversion
 
-  ; "C:\Windows\sysnative" will be converted to "C:\Windows\System32"
-  ; System32 stores a 64-bit DLL on x64 system
-  Source: C:\Windows\sysnative\vcruntime140.dll;  DestDir: {app}; Flags: ignoreversion
-  Source: C:\Windows\sysnative\vcruntime140_1.dll;  DestDir: {app}; Flags: ignoreversion 
-  Source: C:\Windows\sysnative\msvcp140.dll;  DestDir: {app}; Flags: ignoreversion
-  Source: C:\Windows\sysnative\mfc140u.dll;  DestDir: {app}; Flags: ignoreversion
+  ; VC++ Redistributable for ARM64 — chained installer.
+  ; Downloaded by CI before ISCC runs and placed alongside this script.
+  Source: vc_redist.arm64.exe; DestDir: {tmp}; Flags: deleteafterinstall
 #endif
 #ifndef bit64
   ; Source: ..\Release\Ditto.exe; DestDir: {app}; DestName: Ditto.exe; Flags: ignoreversion; AfterInstall: AddProgramToFirewall(ExpandConstant('{app}\Ditto.exe'), 'Ditto_FromInstaller_32');
@@ -100,6 +98,7 @@ Name: {group}\Ditto; Filename: {app}\Ditto.exe
 Name: {group}\Uninstall; Filename: {uninstallexe}
 
 [Run]
+Filename: {tmp}\vc_redist.arm64.exe; Parameters: "/quiet /norestart"; StatusMsg: "Installing Microsoft Visual C++ Redistributable..."; Flags: waituntilterminated
 Filename: {app}\Ditto.exe; Description: Launch Ditto; Flags: nowait postinstall
 Filename: https://sourceforge.net/p/ditto-cp/wiki/Getting%20Started; Description: View Help; Flags: nowait postinstall skipifsilent shellexec unchecked
 Filename: https://ditto-cp.sourceforge.io/changeHistory.php; Description: View Change History; Flags: nowait postinstall skipifsilent shellexec unchecked

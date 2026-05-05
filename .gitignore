@@ -53,7 +53,13 @@ CP_Main_i.h
 CP_Main.aps
 /focusdll/Release64
 /ICU_Loader/x64
+/ICU_Loader/ARM64
 /Release64
+/Releasex64
+/Release
+/ReleaseARM64
+/DebugARM64
+/Debug64
 *.db
 *.Settings
 Debug/portable
@@ -73,3 +79,20 @@ Debug/portable
 /FocusHighlight
 /focusdll
 /x64
+
+# Claude Code local config
+/.claude/
+
+# vcpkg manifest-mode install dir
+/vcpkg_installed/
+
+# MSBuild preprocess output (used for diagnostics)
+/preprocessed.xml
+
+# Per-project intermediate dirs (IntDir = $(Configuration)$(Platform)\)
+**/ReleaseARM64/
+**/DebugARM64/
+**/Releasex64/
+**/Debugx64/
+**/ReleaseWin32/
+**/DebugWin32/

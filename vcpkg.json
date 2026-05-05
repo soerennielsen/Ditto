@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "ditto",
+  "version-string": "3.25.0",
+  "dependencies": [
+    "zlib"
+  ],
+  "builtin-baseline": "cf9b6f1a47898a888f9e86e346a9adfa68357380"
+}

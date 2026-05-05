@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <VcpkgEnableManifest Condition="'$(MSBuildProjectName)'=='CP_Main'">true</VcpkgEnableManifest>
+    <VcpkgTriplet Condition="'$(MSBuildProjectName)'=='CP_Main' and '$(Platform)'=='x64'">x64-windows-static-md</VcpkgTriplet>
+    <VcpkgTriplet Condition="'$(MSBuildProjectName)'=='CP_Main' and '$(Platform)'=='Win32'">x86-windows-static-md</VcpkgTriplet>
+    <VcpkgTriplet Condition="'$(MSBuildProjectName)'=='CP_Main' and '$(Platform)'=='ARM64'">arm64-windows-static-md</VcpkgTriplet>
+  </PropertyGroup>
+</Project>

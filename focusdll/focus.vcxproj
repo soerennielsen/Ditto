@@ -100,17 +100,17 @@
     <_ProjectFileVersion>10.0.21006.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Configuration)64\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">$(Platform)\$(Configuration)\Tmp\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)$(Platform)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Configuration)$(Platform)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">$(Configuration)$(Platform)\Tmp\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Configuration)64\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">$(Platform)\$(Configuration)\Tmp\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)$(Platform)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Configuration)$(Platform)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">$(Configuration)$(Platform)\Tmp\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</LinkIncremental>
@@ -138,7 +138,10 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)$(Configuration)$(Platform)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <OutDir>$(SolutionDir)$(Configuration)$(Platform)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -253,10 +256,10 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>.\$(Platform)\$(Configuration)/focus.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\$(Platform)\$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>.\$(Platform)\$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>.\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\$(Configuration)$(Platform)/focus.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\$(Configuration)$(Platform)/</AssemblerListingLocation>
+      <ObjectFileName>.\$(Configuration)$(Platform)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\$(Configuration)$(Platform)/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -267,18 +270,18 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Platform)\$(Configuration)\focus.dll</OutputFile>
+      <OutputFile>$(SolutionDir)$(Configuration)$(Platform)\focus.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ProgramDatabaseFile>.\$(Platform)\$(Configuration)/focus.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\$(Configuration)$(Platform)/focus.pdb</ProgramDatabaseFile>
       <ImportLibrary>
       </ImportLibrary>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>.\$(Platform)\$(Configuration)/focus64.map</MapFileName>
+      <MapFileName>.\$(Configuration)$(Platform)/focus64.map</MapFileName>
       <MapExports>true</MapExports>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\$(Platform)\$(Configuration)/focus64.bsc</OutputFile>
+      <OutputFile>.\$(Configuration)$(Platform)/focus64.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command>
@@ -400,10 +403,10 @@
       <PreprocessorDefinitions>UNICODE;WIN32;_DEBUG;_WINDOWS;_USRDLL;FOCUS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\$(Platform)\$(Configuration)/focus.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\$(Platform)\$(Configuration)/</AssemblerListingLocation>
-      <ObjectFileName>.\$(Platform)\$(Configuration)/</ObjectFileName>
-      <ProgramDataBaseFileName>.\$(Platform)\$(Configuration)/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\$(Configuration)$(Platform)/focus.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\$(Configuration)$(Platform)/</AssemblerListingLocation>
+      <ObjectFileName>.\$(Configuration)$(Platform)/</ObjectFileName>
+      <ProgramDataBaseFileName>.\$(Configuration)$(Platform)/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -417,19 +420,19 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Platform)\$(Configuration)\focus.dll</OutputFile>
+      <OutputFile>$(SolutionDir)$(Configuration)$(Platform)\focus.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\focus$(Configuration)/focus.pdb</ProgramDatabaseFile>
       <ImportLibrary>
       </ImportLibrary>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>.\$(Platform)\$(Configuration)/focus.map</MapFileName>
+      <MapFileName>.\$(Configuration)$(Platform)/focus.map</MapFileName>
       <MapExports>true</MapExports>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\$(Platform)\$(Configuration)/focus.bsc</OutputFile>
+      <OutputFile>.\$(Configuration)$(Platform)/focus.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command>
